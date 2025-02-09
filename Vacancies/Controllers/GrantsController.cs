@@ -158,7 +158,7 @@ namespace Vacancies.Controllers
                 .ToListAsync();
 
             grant.Categories.Clear();
-            foreach (var category in categories)a
+            foreach (var category in categories)
             {
                 grant.Categories.Add(category);
             }
