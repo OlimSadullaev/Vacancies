@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Vacancies.Data;
 using Vacancies.DTOs;
@@ -159,7 +158,7 @@ namespace Vacancies.Controllers
                 .ToListAsync();
 
             grant.Categories.Clear();
-            foreach (var category in categories)
+            foreach (var category in categories)a
             {
                 grant.Categories.Add(category);
             }
