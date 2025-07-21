@@ -17,16 +17,16 @@ internal class Program
         builder.Services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-        //// Configure CORS
-        //builder.Services.AddCors(options =>
-        //{
-        //    options.AddPolicy("AllowedOrigins", policy =>
-        //    {
-        //        policy.WithOrigins(builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>())
-        //              .AllowAnyHeader()
-        //              .AllowAnyMethod();
-        //    });
-        //});
+        // Configure CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowedOrigins", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200", "https://localhost:4200")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
         // Add Swagger
         builder.Services.AddEndpointsApiExplorer();
