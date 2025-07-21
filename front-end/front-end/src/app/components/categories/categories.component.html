@@ -1,0 +1,126 @@
+<div class="categories-container">
+  <div class="header">
+    <h2>Categories</h2>
+    <button class="btn btn-primary" (click)="toggleCreateForm()">
+      {{ showCreateForm ? 'Cancel' : 'Add Category' }}
+    </button>
+  </div>
+
+  <!-- Error message -->
+  <div class="alert alert-danger" *ngIf="error">
+    {{ error }}
+  </div>
+
+  <!-- Create form -->
+  <div class="create-form" *ngIf="showCreateForm">
+    <h3>Create New Category</h3>
+    <form [formGroup]="createForm" (ngSubmit)="onSubmitCreate()">
+      <div class="form-group">
+        <label for="name">Name *</label>
+        <input 
+          type="text" 
+          id="name" 
+          formControlName="name" 
+          class="form-control"
+          [class.is-invalid]="createForm.get('name')?.invalid && createForm.get('name')?.touched"
+        >
+        <div class="invalid-feedback" *ngIf="createForm.get('name')?.invalid && createForm.get('name')?.touched">
+          <div *ngIf="createForm.get('name')?.errors?.['required']">Name is required</div>
+          <div *ngIf="createForm.get('name')?.errors?.['maxlength']">Name cannot exceed 100 characters</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea 
+          id="description" 
+          formControlName="description" 
+          class="form-control"
+          rows="3"
+          [class.is-invalid]="createForm.get('description')?.invalid && createForm.get('description')?.touched"
+        ></textarea>
+        <div class="invalid-feedback" *ngIf="createForm.get('description')?.invalid && createForm.get('description')?.touched">
+          <div *ngIf="createForm.get('description')?.errors?.['maxlength']">Description cannot exceed 500 characters</div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-success" [disabled]="createForm.invalid || submitting">
+          {{ submitting ? 'Creating...' : 'Create Category' }}
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="toggleCreateForm()">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Search -->
+  <div class="search-section">
+    <div class="form-group">
+      <label for="search">Search Categories</label>
+      <input 
+        type="text" 
+        id="search" 
+        [(ngModel)]="searchTerm" 
+        (input)="onSearchChange()"
+        class="form-control"
+        placeholder="Search by name or description..."
+      >
+    </div>
+  </div>
+
+  <!-- Loading indicator -->
+  <div class="loading" *ngIf="loading">
+    <div class="spinner"></div>
+    Loading categories...
+  </div>
+
+  <!-- Categories list -->
+  <div class="categories-list" *ngIf="!loading">
+    <div class="category-card" *ngFor="let category of categories">
+      <h4>{{ category.name }}</h4>
+      <p *ngIf="category.description">{{ category.description }}</p>
+      <small class="category-id">ID: {{ category.id }}</small>
+    </div>
+
+    <div class="no-results" *ngIf="categories.length === 0">
+      No categories found.
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination-container" *ngIf="pagedResult && pagedResult.totalPages > 1">
+    <div class="pagination-info">
+      Showing {{ (pagedResult.page - 1) * pagedResult.pageSize + 1 }} to 
+      {{ Math.min(pagedResult.page * pagedResult.pageSize, pagedResult.totalCount) }} 
+      of {{ pagedResult.totalCount }} categories
+    </div>
+    
+    <div class="pagination">
+      <button 
+        class="btn btn-outline-primary"
+        [disabled]="!pagedResult.hasPreviousPage"
+        (click)="onPageChange(pagedResult.page - 1)"
+      >
+        Previous
+      </button>
+      
+      <button 
+        *ngFor="let page of getPaginationPages()"
+        class="btn"
+        [class.btn-primary]="page === pagedResult.page"
+        [class.btn-outline-primary]="page !== pagedResult.page"
+        (click)="onPageChange(page)"
+      >
+        {{ page }}
+      </button>
+      
+      <button 
+        class="btn btn-outline-primary"
+        [disabled]="!pagedResult.hasNextPage"
+        (click)="onPageChange(pagedResult.page + 1)"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+</div>
