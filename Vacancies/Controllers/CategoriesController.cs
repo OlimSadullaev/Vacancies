@@ -39,7 +39,6 @@ namespace Vacancies.Controllers
 
                 var query = _context.Categories.AsQueryable();
 
-                // Apply search filter if provided
                 if (!string.IsNullOrEmpty(search))
                 {
                     query = query.Where(c => c.Name.ToLower().Contains(search.ToLower()) ||
