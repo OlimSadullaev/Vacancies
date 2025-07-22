@@ -101,7 +101,8 @@ export class GrantsComponent implements OnInit {
     }
   }
 
-  onCategorySelectionChange(categoryId: string, isChecked: boolean): void {
+  onCategorySelectionChange(categoryId: string, event: any): void {
+    const isChecked = (event.target as HTMLInputElement).checked;
     const currentIds = this.createForm.get('categoryIds')?.value || [];
     let updatedIds;
     

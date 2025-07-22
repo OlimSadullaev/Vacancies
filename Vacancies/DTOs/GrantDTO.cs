@@ -6,15 +6,15 @@ namespace Vacancies.DTOs
     {
         [Required(ErrorMessage = "Title is required")]
         [StringLength(200, ErrorMessage = "Title cannot exceed 200 characters")]
-        public string Title { get; set; }
+        public string Title { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Description is required")]
         [StringLength(5000, ErrorMessage = "Description cannot exceed 5000 characters")]
-        public string Description { get; set; }
+        public string Description { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Country is required")]
         [StringLength(100, ErrorMessage = "Country cannot exceed 100 characters")]
-        public string Country { get; set; }
+        public string Country { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Deadline is required")]
         [DataType(DataType.DateTime)]
@@ -22,10 +22,10 @@ namespace Vacancies.DTOs
         public DateTime Deadline { get; set; }
 
         [StringLength(2000, ErrorMessage = "Requirements cannot exceed 2000 characters")]
-        public string Requirements { get; set; }
+        public string Requirements { get; set; } = string.Empty;
 
         [StringLength(100, ErrorMessage = "Funding amount cannot exceed 100 characters")]
-        public string FundingAmount { get; set; }
+        public string FundingAmount { get; set; } = string.Empty;
     }
 
     public class GrantDTO : BaseGrantDTO
@@ -42,7 +42,7 @@ namespace Vacancies.DTOs
     // Custom validation attribute for future dates
     public class FutureDateAttribute : ValidationAttribute
     {
-        public override bool IsValid(object value)
+        public override bool IsValid(object? value)
         {
             if (value is DateTime date)
             {

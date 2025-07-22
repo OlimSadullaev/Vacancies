@@ -24,7 +24,7 @@ namespace Vacancies.Controllers
         [HttpGet]
         public async Task<ActionResult<PagedResult<GrantDTO>>> GetGrants(
             [FromQuery] Guid? categoryId = null,
-            [FromQuery] string country = null,
+            [FromQuery] string? country = null,
             [FromQuery] bool activeOnly = true,
             [FromQuery] int page = 1,
             [FromQuery] int pageSize = 10)

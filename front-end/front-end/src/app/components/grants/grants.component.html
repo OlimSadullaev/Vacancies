@@ -115,7 +115,7 @@
               type="checkbox" 
               [id]="'category-' + category.id"
               [checked]="isCategorySelected(category.id)"
-              (change)="onCategorySelectionChange(category.id, ($event.target as HTMLInputElement).checked)"
+              (change)="onCategorySelectionChange(category.id, $event)"
             >
             <label [for]="'category-' + category.id">{{ category.name }}</label>
           </div>

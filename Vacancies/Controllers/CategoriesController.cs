@@ -24,7 +24,7 @@ namespace Vacancies.Controllers
         // GET: api/categories
         [HttpGet]
         public async Task<ActionResult<PagedResult<CategoryDTO>>> GetCategories(
-            [FromQuery] string search = null,
+            [FromQuery] string? search = null,
             [FromQuery] int page = 1,
             [FromQuery] int pageSize = 10)
         {
