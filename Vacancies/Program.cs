@@ -15,7 +15,7 @@ internal class Program
 
         // Add DbContext
         builder.Services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
         // Configure CORS
 builder.Services.AddCors(options =>
@@ -33,6 +33,13 @@ builder.Services.AddCors(options =>
         builder.Services.AddSwaggerGen();
 
         var app = builder.Build();
+
+        // Ensure database is created
+        using (var scope = app.Services.CreateScope())
+        {
+            var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            context.Database.EnsureCreated();
+        }
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
