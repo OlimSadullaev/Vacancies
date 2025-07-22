@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace Vacancies.Models
 {
@@ -13,19 +13,19 @@ namespace Vacancies.Models
 
         [Required]
         [MaxLength(200)]
-        public string Title { get; set; }
+        public string Title { get; set; } = string.Empty;
 
         [Required]
-        public string Description { get; set; }
+        public string Description { get; set; } = string.Empty;
 
         [Required]
-        public string Country { get; set; }
+        public string Country { get; set; } = string.Empty;
 
         public DateTime Deadline { get; set; }
 
-        public string Requirements { get; set; }
+        public string Requirements { get; set; } = string.Empty;
 
-        public string FundingAmount { get; set; }
+        public string FundingAmount { get; set; } = string.Empty;
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
