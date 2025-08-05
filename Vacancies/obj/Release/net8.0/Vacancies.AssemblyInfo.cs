@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Vacancies")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b009e0c83e1c119ca5e0f317c300842634a768d9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+77997c6aab7ee6a558d5a334abe37ba20b3cbc72")]
 [assembly: System.Reflection.AssemblyProductAttribute("Vacancies")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Vacancies")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
