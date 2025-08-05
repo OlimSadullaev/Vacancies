@@ -12,6 +12,9 @@ export interface Grant {
   deadline: string;
   requirements: string;
   fundingAmount: string;
+  createdAt: string;
+  updatedAt?: string;
+  isActive: boolean;
   categories: Category[];
 }
 
@@ -56,7 +59,19 @@ export class GrantService {
     return this.http.get<PagedResult<Grant>>(this.apiUrl, { params });
   }
 
+  getGrant(id: number): Observable<Grant> {
+    return this.http.get<Grant>(`${this.apiUrl}/${id}`);
+  }
+
   createGrant(grant: CreateGrant): Observable<Grant> {
     return this.http.post<Grant>(this.apiUrl, grant);
+  }
+
+  updateGrant(id: number, grant: CreateGrant): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/${id}`, grant);
+  }
+
+  deleteGrant(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

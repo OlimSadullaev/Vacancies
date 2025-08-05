@@ -44,7 +44,19 @@ export class CategoryService {
     return this.http.get<PagedResult<Category>>(this.apiUrl, { params });
   }
 
+  getCategory(id: string): Observable<Category> {
+    return this.http.get<Category>(`${this.apiUrl}/${id}`);
+  }
+
   createCategory(category: CreateCategory): Observable<Category> {
     return this.http.post<Category>(this.apiUrl, category);
+  }
+
+  updateCategory(id: string, category: CreateCategory): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/${id}`, category);
+  }
+
+  deleteCategory(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }
