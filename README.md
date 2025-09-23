@@ -182,12 +182,6 @@ curl -X POST http://localhost:5000/api/grants \
 - [ ] Dashboard with analytics
 - [ ] Export functionality (PDF, Excel)
 
-## 📄 License
-
-This project is licensed under the MIT License.
-
-## 👥 Contributing
-
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
