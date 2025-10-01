@@ -1,1 +1,19 @@
 .vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+bin/
+obj/
+[Bb]uild/
+[Ll]og/
+*.tmp
+*.temp
+*.log
+*.pidb
+*.svclog
+*.pdb
+# Ignore environment-specific settings
+appsettings.Development.json
+appsettings.Production.json
+appsettings.*.local.json
