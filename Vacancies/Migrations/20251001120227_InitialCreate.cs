@@ -28,8 +28,7 @@ namespace Vacancies.Migrations
                 name: "Grants",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Country = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -50,7 +49,7 @@ namespace Vacancies.Migrations
                 columns: table => new
                 {
                     CategoriesId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    GrantsId = table.Column<int>(type: "int", nullable: false)
+                    GrantsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {

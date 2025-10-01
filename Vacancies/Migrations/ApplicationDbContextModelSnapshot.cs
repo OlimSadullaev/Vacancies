@@ -27,8 +27,8 @@ namespace Vacancies.Migrations
                     b.Property<Guid>("CategoriesId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("GrantsId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("GrantsId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("CategoriesId", "GrantsId");
 
@@ -61,11 +61,9 @@ namespace Vacancies.Migrations
 
             modelBuilder.Entity("Vacancies.Models.Grant", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Country")
                         .IsRequired()

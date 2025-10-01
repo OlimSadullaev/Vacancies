@@ -12,7 +12,7 @@ using Vacancies.Data;
 namespace Vacancies.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250804172002_InitialCreate")]
+    [Migration("20251001120227_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -30,8 +30,8 @@ namespace Vacancies.Migrations
                     b.Property<Guid>("CategoriesId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("GrantsId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("GrantsId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("CategoriesId", "GrantsId");
 
@@ -64,11 +64,9 @@ namespace Vacancies.Migrations
 
             modelBuilder.Entity("Vacancies.Models.Grant", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Country")
                         .IsRequired()

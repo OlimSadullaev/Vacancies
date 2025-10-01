@@ -4,39 +4,29 @@ namespace Vacancies.DTOs
 {
     public class BaseGrantDTO
     {
-        [Required(ErrorMessage = "Title is required")]
-        [StringLength(200, ErrorMessage = "Title cannot exceed 200 characters")]
         public string Title { get; set; } = string.Empty;
-
-        [Required(ErrorMessage = "Description is required")]
-        [StringLength(5000, ErrorMessage = "Description cannot exceed 5000 characters")]
         public string Description { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Country is required")]
-        [StringLength(100, ErrorMessage = "Country cannot exceed 100 characters")]
         public string Country { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Deadline is required")]
         [DataType(DataType.DateTime)]
-        [FutureDate(ErrorMessage = "Deadline must be in the future")]
         public DateTime Deadline { get; set; }
 
-        [StringLength(2000, ErrorMessage = "Requirements cannot exceed 2000 characters")]
         public string Requirements { get; set; } = string.Empty;
 
-        [StringLength(100, ErrorMessage = "Funding amount cannot exceed 100 characters")]
         public string FundingAmount { get; set; } = string.Empty;
     }
 
     public class GrantDTO : BaseGrantDTO
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public List<CategoryDTO> Categories { get; set; } = new List<CategoryDTO>();
     }
 
     public class CreateGrantDTO : BaseGrantDTO
     {
-        public List<Guid> CategoryIds { get; set; } = new List<Guid>();
+        [Required(ErrorMessage = "At least one category is required")]
+        public List<Guid> CategoryIds { get; set; } = new();
     }
 
     // Custom validation attribute for future dates

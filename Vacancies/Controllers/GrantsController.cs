@@ -65,11 +65,11 @@ namespace Vacancies.Controllers
 
         // GET: api/grants/{id}
         [HttpGet("{id}")]
-        public async Task<ActionResult<GrantDTO>> GetGrant(int id)
+        public async Task<ActionResult<GrantDTO>> GetGrant(Guid id)
         {
             try
             {
-                if (id <= 0)
+                if (id <= Guid.Empty)
                 {
                     logger.LogWarning("Invalid grant ID provided: {Id}", id);
                     return BadRequest("Invalid grant ID");
@@ -154,11 +154,11 @@ namespace Vacancies.Controllers
 
         // PUT: api/grants/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateGrant(int id, [FromBody] CreateGrantDTO updateGrantDto)
+        public async Task<IActionResult> UpdateGrant(Guid id, [FromBody] CreateGrantDTO updateGrantDto)
         {
             try
             {
-                if (id <= 0)
+                if (id <= Guid.Empty)
                 {
                     logger.LogWarning("Invalid grant ID provided for update: {Id}", id);
                     return BadRequest("Invalid grant ID");
@@ -232,11 +232,11 @@ namespace Vacancies.Controllers
 
         // DELETE: api/grants/{id}
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteGrant(int id)
+        public async Task<IActionResult> DeleteGrant(Guid id)
         {
             try
             {
-                if (id <= 0)
+                if (id <= Guid.Empty)
                 {
                     logger.LogWarning("Invalid grant ID provided for deletion: {Id}", id);
                     return BadRequest("Invalid grant ID");
@@ -264,7 +264,7 @@ namespace Vacancies.Controllers
             }
         }
 
-        private async Task<bool> GrantExistsAsync(int id)
+        private async Task<bool> GrantExistsAsync(Guid id)
         {
             return await context.Grants.AnyAsync(e => e.Id == id);
         }
